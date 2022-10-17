@@ -10,7 +10,7 @@ const imgArray = [
 
 const prev = document.querySelector('.up');
 const next = document.querySelector('.down');
-// console.log(next, prev);
+console.log(next, prev);
 
 let imgTags = '';
 
@@ -19,7 +19,7 @@ const slider = document.querySelector('.container-image');
 
 for(let i = 0; i < imgArray.length; i++){
   imgTags += `
-  <img class="item hide" src="assets/img/${imgArray[i]}" ${imgArray[i]}">
+  <img class="item hide" src="assets/img/${imgArray[i]}" alt="${imgArray[i]}">
   `;
   // console.log(imgTags);
 }
@@ -29,37 +29,33 @@ let counterImg = 0;
 slider.innerHTML = imgTags;
 
 const items = document.getElementsByClassName('item');
-// console.log(items);
+console.log(items);
 
 items[counterImg].classList.add('visible');
 
 
 next.addEventListener('click', function(){
   items[counterImg].classList.remove('visible');
-  counterImg++;
+  
+  if(counterImg === imgArray.length - 1){
+    counterImg = 0;
+  }
+  else{
+    counterImg++;
+  }
+  
   items[counterImg].classList.add('visible');
+  
 });
 
-// ! devo dirgli:
 
-/*
-Se counterImg è arrivato alla lunghezza di imgArray devi ricominciare dall'inizio
-*/
-
-
-
-
-
-// next.addEventListener('click', function(){
-  
-//   items[counterImg].classList.remove('visible');
-//   counterImg++;
-//   items[counterImg].classList.add('visible');
-
-// });
-
-// prev.addEventListener('click', function(){
-//   items[counterImg].classList.remove('visible');
-//   counterImg--;
-//   items[counterImg].classList.add('visible');
-// });
+prev.addEventListener('click', function(){
+items[counterImg].classList.remove('visible');
+if(counterImg === 0){
+  counterImg = imgArray.length - 1;
+}
+else{
+  counterImg--;
+}
+items[counterImg].classList.add('visible');
+});
