@@ -35,11 +35,16 @@ items[counterImg].classList.add('visible');
 
 
 next.addEventListener('click', function(){
-
-
+  items[counterImg].classList.remove('visible');
+  counterImg++;
+  items[counterImg].classList.add('visible');
 });
 
+// ! devo dirgli:
 
+/*
+Se counterImg è arrivato alla lunghezza di imgArray devi ricominciare dall'inizio
+*/
 
 
 
